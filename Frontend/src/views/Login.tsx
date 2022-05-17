@@ -71,8 +71,7 @@ function Login() {
           </div>
         </div>
       </div>
-      <div className="w-full h-auto flex justify-center items-center">
-        Terms and Policys
+      <div className="w-full h-fill bg-slate-800 flex justify-center items-center">
       </div>
     </div>
   );
