@@ -30,18 +30,20 @@ function Login() {
             </p>
             <p className="text-4xl mb-5 font-bold">Twitter'a bugün katıl.</p>
             <div className="w-[20rem]  flex flex-col">
-              <button className="bg-white text-black rounded-full py-2 mb-4 mt-5">
-                Google ile Kaydolun
+              <button className="bg-white text-black rounded-full py-2 mb-4 mt-5 flex flex-row items-center justify-center">
+                <img src="assets/google_logo.png" alt="" className="w-6 h-6 mr-2"/>
+                <span>Google ile Kaydolun</span>
               </button>
-              <button className="bg-white text-black font-bold rounded-full py-2">
-                Apple ile Kaydol
+              <button className="bg-white text-black rounded-full py-2 mb-2 flex flex-row items-center justify-center">
+                <img src="assets/apple_logo.png" alt="" className="w-6 h-6 mr-2"/>
+                <span>Apple ile kaydol</span>
               </button>
-              <div className="relative flex py-2 ite ms-center">
-                <div className="flex-grow border-t border-gray-400"></div>
+              <div className="relative flex py-2 ite mb-2 ms-center">
+                <div className="flex-grow border-t mt-3 border-gray-400"></div>
                 <span className="flex-shrink mx-4 text-gray-400">veya</span>
-                <div className="flex-grow border-t border-gray-400"></div>
+                <div className="flex-grow border-t mt-3 border-gray-400"></div>
               </div>
-              <button className="bg-blue-500 font-bold rounded-full py-2">
+              <button className="bg-blue-500 font-bold rounded-full py-2 mb-2">
                 Telefon numarası veya e-posta...
               </button>
               <div className="text-xs  text-gray-500">
