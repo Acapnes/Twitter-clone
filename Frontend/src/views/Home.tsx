@@ -1,12 +1,12 @@
 import React from 'react'
 
-function Home() {
-    return (
-      <div className="w-screen h-screen">
-        
-      </div>
-    );
-  }
-  
-  export default Home;
-  
+export const Home = () => {
+  return (
+    <div className="bg-red-500 h-[200vh] w-full">
+
+    </div>
+  )
+}
+
+
+export default Home;
