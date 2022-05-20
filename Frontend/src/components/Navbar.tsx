@@ -1,11 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { HomeIcon, ExploreIcon, NotificationIcon, MessageIcon, BookmarksIcon, ListsIcon, ProfileIcon, MoreIcon } from "./SVGIcons";
+import {
+  HomeIcon,
+  ExploreIcon,
+  NotificationIcon,
+  MessageIcon,
+  BookmarksIcon,
+  ListsIcon,
+  ProfileIcon,
+  MoreIcon,
+  TwitterIcon,
+} from "./Icons/SVGIcons";
 
 const Navbar = () => {
   return (
     <div className="h-full w-[16.5rem] sticky top-0">
       <div className="flex flex-col mt-2 space-y-1">
+        <div className="w-full">
+          <Link
+            to="*" className="w-fit flex flex-row items-center justify-start  space-x-4 px-4 py-4 rounded-full text-white text-2xl hover:bg-gray-900">
+            <TwitterIcon />
+          </Link>
+        </div>
+
         <div className="w-full">
           <Link
             to="/home"
@@ -86,7 +103,10 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <a href="https://www.google.com/" className="w-fit bg-blue-500 rounded-full">
+        <a
+          href="https://www.google.com/"
+          className="w-fit bg-blue-500 rounded-full"
+        >
           <div className="flex justify-center items-center px-24 py-4">
             <span className="text-white font-bold">Tweet</span>
           </div>
