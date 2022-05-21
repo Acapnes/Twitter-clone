@@ -18,7 +18,7 @@ const Navbar = () => {
       <div className="flex flex-col mt-2 space-y-1">
         <div className="w-full">
           <Link
-            to="*" className="w-fit flex flex-row items-center justify-start  space-x-4 px-4 py-4 rounded-full text-white text-2xl hover:bg-gray-900">
+            to="/home" className="w-fit flex flex-row items-center justify-start  space-x-4 px-4 py-4 rounded-full text-white text-2xl hover:bg-gray-900">
             <TwitterIcon />
           </Link>
         </div>
