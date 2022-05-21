@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { CommentIcon, LikeIcon, ReTweetIcon, ShareIcon } from "./Icons/ShortIcons";
+import { CommentIcon, LikeIcon, ReTweetIcon, ShareIcon, ShortMoreIcon } from "./Icons/ShortIcons";
 import { ProfileIcon, TopTweetsIcon } from "./Icons/SVGIcons";
 
 export const Feed = () => {
@@ -11,35 +11,44 @@ export const Feed = () => {
     outhor: "Alper",
     username:"Acapnes",
     time: new Date(),
-    img: "",
-    data: "Full-stack developer",
+    data: "Donec molestie, metus sed scelerisque cursus, nibh nulla placerat tortor, id gravida erat eros in lacus. Nullam dignissim non erat sit amet mattis. Etiam sit amet sem justo. Sed vel felis risus. Suspendisse sed mi felis. Pellentesque nec libero est. Cras cursus libero et neque varius dapibus",
     comment:{
       count:4
-    }
+    },
+    img:{
+      src:"assets/twitter-512.png",
+    },
+    confrimed: true
   };
 
   const Tweet2 = {
     id: 1,
-    outhor: "Alper",
-    username:"Acapnes",
+    outhor: "Ahmet",
+    username:"Example",
     time: new Date(),
-    img: "",
-    data: "Full-stack developer",
+    data: "Nullam ultricies a justo non mattis. Aliquam dignissim at justo vitae imperdiet. Suspendisse sed lorem eget purus ultrices dapibus vitae vel nulla. Aenean dictum eleifend leo et ullamcorper. Praesent eu ullamcorper lacus. Maecenas pellentesque tellus et ipsum pretium, convallis dapibus nulla tempus. Sed tempus velit ligula. Etiam sit amet cursus justo, vitae fringilla risus. Nulla vitae magna id nibh tincidunt convallis. Quisque lobortis luctus maximus. Sed sed massa nunc. Suspendisse a ornare lacus, in egestas nibh. Etiam porta mi quis faucibus pharetra",
     comment:{
       count:4
-    }
+    },
+    img:{
+      src:"assets/twitter-512.png",
+    },
+    confrimed: false
   };
 
   const Tweet3 = {
     id: 1,
-    outhor: "Alper",
-    username:"Acapnes",
+    outhor: "Çağrı Ergün",
+    username:"HypeSinemalar",
     time: new Date(),
-    img: "",
-    data: "Full-stack developer",
+    data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sapien massa, elementum in accumsan mattis, tempus sagittis felis. Proin at risus porttitor, maximus nisl vitae, aliquet ex. Proin facilisis, lectus sed sagittis tincidunt, velit nisi sollicitudin purus, eget facilisis eros quam ut quam. Etiam tempus pulvinar gravida. Etiam imperdiet, turpis vel placerat varius, ante odio finibus leo, in scelerisque risus velit at diam. Phasellus at bibendum erat. Cras in ante quis libero pharetra egestas non id orci. Mauris eget ex in sapien dictum mattis quis nec dui. Vestibulum pretium, arcu eget ornare mollis, elit neque auctor nibh, non blandit ante nisl vitae felis. Mauris convallis ultrices quam quis rutrum",
     comment:{
       count:4
-    }
+    },
+    img:{
+      src:"assets/google_logo.png",
+    },
+    confrimed: true
   };
 
   const TweetAray = [Tweet,Tweet2,Tweet3,Tweet3,Tweet3,Tweet3,Tweet3];
@@ -83,8 +92,8 @@ export const Feed = () => {
 
       {/* Tweets Listing */}
       {
-        TweetAray.map(()=>(
-          <div className="w-full h-[auto] mt-4 pt-2 flex flex-row border-t-2 border-t-gray-500">
+        TweetAray.map((tweet,i)=>(
+          <div className="w-full h-[auto] mt-4 pt-2 flex flex-row border-t-2 border-t-gray-500 relative">
           <div className="w-[15%] h-[100%] ">
             <div className="text-center">Resim</div>
           </div>
@@ -92,11 +101,15 @@ export const Feed = () => {
             <div className="w-full h-[90%] ">
               <div className="flex flex-col w-full h-full ml-2 mt-2 ">
                 <div className="flex flex-row w-[90%] h-auto space-x-2 ">
-                  <span>{Tweet.outhor}</span> <span>{Tweet.username}</span> <span>{Tweet.time.getMinutes()+"m"}</span>
+                  <span>{tweet.outhor}</span> <span className=" text-sm text-gray-500">{tweet.username}</span>
+                  <span>{tweet.confrimed ? "Confrimed":"Not Confrimed"}</span>
+                  <span className=" text-sm text-gray-500">{tweet.time.getMinutes()+"m"}</span>
                 </div>
+                
                 <div className="h-auto w-[90%] my-4">
-                  <span>{Tweet.data}</span>
+                  <span>{tweet.data}</span>
                 </div>
+                <img src={tweet.img.src} alt="" className="h-24 w-24 "/>
               </div>
             </div>
             <div className="w-full h-fit">
@@ -127,6 +140,7 @@ export const Feed = () => {
               </div>
             </div>
           </div>
+          <Link to="*"><div className="absolute top-2.5 right-5 fill-gray-500"> <ShortMoreIcon/> </div></Link>
         </div>
         ))
       }
