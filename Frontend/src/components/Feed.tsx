@@ -46,6 +46,8 @@ export const Feed = () => {
 
   return (
     <div className="h-[100%] w-[37.5rem] border-l-2 border-r-2 border-b-2 border-gray-400 text-white">
+
+      {/* HomeBanner */}
       <div className="w-full h-[6rem] font-bold text-xl relative">
         <Link to="/home" className="absolute top-5 left-5">
           Home
@@ -57,6 +59,9 @@ export const Feed = () => {
           <TopTweetsIcon />
         </Link>
       </div>
+      
+
+      {/* Tweet Input */}
       <div className="flex flex-row w-full h-[6rem] ">
         <div className="w-[15%] h-[100%] ">
           <div className="text-center">Resim</div>
@@ -76,7 +81,7 @@ export const Feed = () => {
       </div>
 
 
-
+      {/* Tweets Listing */}
       {
         TweetAray.map(()=>(
           <div className="w-full h-[auto] mt-4 pt-2 flex flex-row border-t-2 border-t-gray-500">
@@ -125,6 +130,8 @@ export const Feed = () => {
         </div>
         ))
       }
+
+
 
     </div>
   );

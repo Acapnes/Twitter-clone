@@ -2,11 +2,10 @@ import { Route, Routes } from "react-router-dom";
 import { Feed } from "../components/Feed";
 import Navbar from "../components/Navbar";
 import { Widgets } from "../components/Widgets";
-import Home from "./Home";
 
 function App() {
   return (
-    <div className="w-[100] min-h-screen h-[100%] bg-black flex justify-center">
+    <div className="w-full min-h-screen h-[100%] bg-black flex justify-center">
       <div className="w-[78rem] h-full flex flex-row">
         <Navbar />
         <Routes>
