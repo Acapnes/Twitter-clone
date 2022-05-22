@@ -2,18 +2,25 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type CatDocument = Cat & Document;
+export type TweetDocument = Tweet & Document;
 
 @Schema()
-export class Cat {
-  @Prop()
-  name: string;
+export class Tweet {
+  @Prop({ required: true })
+  author: string;
+
+  @Prop({ required: true })
+  username: string;
+
+  @Prop({ required: true })
+  time: string;
+
 
   @Prop()
-  age: number;
+  data: { message: string, likeCount: number, retweetCount: number, commentCount: number }[];
 
   @Prop()
-  breed: string;
+  img: { src: string }[];
 }
 
-export const CatSchema = SchemaFactory.createForClass(Cat);
+export const TweetSchema = SchemaFactory.createForClass(Tweet);
