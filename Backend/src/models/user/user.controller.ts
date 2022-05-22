@@ -1,8 +1,10 @@
-/* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, ForbiddenException, Get, Param, Post, Res, UseFilters } from "@nestjs/common";
 import { User } from "src/schemas/user.schema";
 import { UsersService } from "./user.service";
 import { UserDto } from "src/dto/user.dto";
+import { Response } from 'express';
+import { HttpExceptionFilter } from "src/helpers/http.exception";
+
 
 
 @Controller('/users')
