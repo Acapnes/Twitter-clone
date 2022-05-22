@@ -16,11 +16,11 @@ export class Tweet {
   time: string;
 
 
-  @Prop()
-  data: { message: string, likeCount: number, retweetCount: number, commentCount: number }[];
+  @Prop({type:Object})
+  data: { message: string, likeCount: number, retweetCount: number, commentCount: number };
 
-  @Prop()
-  img: { src: string }[];
+  @Prop({type:Object})
+  img: { src: string };
 }
 
 export const TweetSchema = SchemaFactory.createForClass(Tweet);
