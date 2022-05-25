@@ -1,67 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { TweetAPI } from "../api/tweet.api";
+import { TweetDto } from "../dto/tweet.dto";
 import { NewTweet } from "./Feed/NewTweet";
 import {
   CommentIcon,
   LikeIcon,
   ReTweetIcon,
   ShareIcon,
-  ShortGalleryIcon,
   ShortMoreIcon,
 } from "./Icons/ShortIcons";
-import { ProfileIcon, TopTweetsIcon } from "./Icons/SVGIcons";
 
 export const Feed = () => {
-  let inputRef: any;
 
-  useEffect(() => {}, []);
+  const [tweets, setTweets] = useState<TweetDto[]>([]);
 
-  const Tweet = {
-    id: 1,
-    outhor: "Alper",
-    username: "Acapnes",
-    time: new Date(),
-    data: "Donec molestie, metus sed scelerisque cursus, nibh nulla placerat tortor, id gravida erat eros in lacus. Nullam dignissim non erat sit amet mattis. Etiam sit amet sem justo. Sed vel felis risus. Suspendisse sed mi felis. Pellentesque nec libero est. Cras cursus libero et neque varius dapibus",
-    comment: {
-      count: 4,
-    },
-    img: {
-      src: "assets/twitter-512.png",
-    },
-    confrimed: true,
-  };
+  const fetchAllTweets = async () =>{
+    const resp = await TweetAPI.getAllTweets();
+    setTweets(resp);
+  }
 
-  const Tweet2 = {
-    id: 1,
-    outhor: "Ahmet",
-    username: "Example",
-    time: new Date(),
-    data: "Nullam ultricies a justo non mattis. Aliquam dignissim at justo vitae imperdiet. Suspendisse sed lorem eget purus ultrices dapibus vitae vel nulla. Aenean dictum eleifend leo et ullamcorper. Praesent eu ullamcorper lacus. Maecenas pellentesque tellus et ipsum pretium, convallis dapibus nulla tempus. Sed tempus velit ligula. Etiam sit amet cursus justo, vitae fringilla risus. Nulla vitae magna id nibh tincidunt convallis. Quisque lobortis luctus maximus. Sed sed massa nunc. Suspendisse a ornare lacus, in egestas nibh. Etiam porta mi quis faucibus pharetra",
-    comment: {
-      count: 4,
-    },
-    img: {
-      src: "https://www.cumhuriyet.com.tr/Archive/2021/11/29/1888598/kapak_112247.jpg",
-    },
-    confrimed: false,
-  };
+  useEffect(() => {
+    fetchAllTweets();
+  }, []);
 
-  const Tweet3 = {
-    id: 1,
-    outhor: "Çağrı Ergün",
-    username: "HypeSinemalar",
-    time: new Date(),
-    data: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sapien massa, elementum in accumsan mattis, tempus sagittis felis. Proin at risus porttitor, maximus nisl vitae, aliquet ex. Proin facilisis, lectus sed sagittis tincidunt, velit nisi sollicitudin purus, eget facilisis eros quam ut quam. Etiam tempus pulvinar gravida. Etiam imperdiet, turpis vel placerat varius, ante odio finibus leo, in scelerisque risus velit at diam. Phasellus at bibendum erat. Cras in ante quis libero pharetra egestas non id orci. Mauris eget ex in sapien dictum mattis quis nec dui. Vestibulum pretium, arcu eget ornare mollis, elit neque auctor nibh, non blandit ante nisl vitae felis. Mauris convallis ultrices quam quis rutrum",
-    comment: {
-      count: 4,
-    },
-    img: {
-      src: "assets/google_logo.png",
-    },
-    confrimed: true,
-  };
-
-  const TweetAray = [Tweet, Tweet2, Tweet3, Tweet3, Tweet3, Tweet3, Tweet3];
 
   return (
     <div className="h-[100%] w-[37.5rem] border-l-2 border-r-2 border-b-2 border-gray-400 text-white">
@@ -80,7 +42,7 @@ export const Feed = () => {
       <NewTweet />
 
       {/* Tweets Listing */}
-      {TweetAray.map((tweet, i) => (
+      {tweets.map((tweet, i) => (
         <div
           key={i}
           className="w-full h-[auto] mt-4 pt-2 flex flex-row border-t-2 border-t-gray-500 relative"
@@ -92,21 +54,21 @@ export const Feed = () => {
             <div className="w-full h-[90%] ">
               <div className="flex flex-col w-full h-full ml-2 mt-2 ">
                 <div className="flex flex-row w-[90%] h-auto space-x-2 ">
-                  <span>{tweet.outhor}</span>{" "}
+                  <span>{tweet.author}</span>{" "}
                   <span className=" text-sm text-gray-500">
                     {tweet.username}
                   </span>
-                  <span>{tweet.confrimed ? "Confrimed" : "Not Confrimed"}</span>
+                  <span>{tweet.confrimed ? "Confrimed":"Not Confrimed"}</span>
                   <span className=" text-sm text-gray-500">
-                    {tweet.time.getMinutes() + "m"}
+                    {tweet.time + "m"}
                   </span>
                 </div>
 
                 <div className="h-auto w-[90%] my-4">
-                  <span>{tweet.data}</span>
+                  <span>{tweet.data.message}</span>
                 </div>
                 <div className="w-full flex justify-center items-center">
-                  <img src={tweet.img.src} alt="" className="" />
+                  {tweet.img.src && <img src={tweet.img.src} alt="" className="" />}
                 </div>
               </div>
             </div>
@@ -119,7 +81,7 @@ export const Feed = () => {
                       <CommentIcon />{" "}
                     </div>{" "}
                     <div className="mt-1.5 text-gray-500">
-                      {Tweet.comment.count}
+                      {tweet.data.commentCount}
                     </div>
                   </div>
                 </Link>
@@ -131,7 +93,7 @@ export const Feed = () => {
                       <ReTweetIcon />{" "}
                     </div>{" "}
                     <div className="mt-1.5 text-gray-500">
-                      {Tweet.comment.count}
+                      {tweet.data.commentCount}
                     </div>
                   </div>
                 </Link>
@@ -143,7 +105,7 @@ export const Feed = () => {
                       <LikeIcon />{" "}
                     </div>{" "}
                     <div className="mt-1.5 text-gray-500">
-                      {Tweet.comment.count}
+                      {tweet.data.commentCount}
                     </div>
                   </div>
                 </Link>
