@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { IsBoolean, IsEmail, IsNotEmpty, IsString } from "class-validator";
 
 export class TweetDto {
     @IsString()
@@ -12,6 +12,10 @@ export class TweetDto {
     @IsString()
     @IsNotEmpty()
     time: string;
+
+    @IsBoolean()
+    @IsNotEmpty()
+    confrimed: boolean;
 
     @IsNotEmpty()
     data: {

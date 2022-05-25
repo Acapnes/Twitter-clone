@@ -14,7 +14,9 @@ export class Tweet {
 
   @Prop({ required: true })
   time: string;
-
+  
+  @Prop({ required: true })
+  confrimed: boolean;
 
   @Prop({type:Object})
   data: { message: string, likeCount: number, retweetCount: number, commentCount: number };
