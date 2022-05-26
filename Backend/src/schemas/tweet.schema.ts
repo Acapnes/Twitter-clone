@@ -1,28 +1,26 @@
 /* eslint-disable prettier/prettier */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
+import { User } from './user.schema';
 
 export type TweetDocument = Tweet & Document;
 
 @Schema()
 export class Tweet {
-  @Prop({ required: true })
-  author: string;
 
-  @Prop({ required: true })
-  username: string;
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref:"User" })
+  author: User
 
-  @Prop({ required: true })
-  time: string;
-  
-  @Prop({ required: true })
-  confrimed: boolean;
-
-  @Prop({type:Object})
-  data: { message: string, likeCount: number, retweetCount: number, commentCount: number };
-
-  @Prop({type:Object})
-  img: { src: string };
+  @Prop({ type: Object })
+  data: {
+    message: string,
+    likeCount: number,
+    retweetCount: number,
+    commentCount: number,
+    img: {
+      src: string
+    }
+  };
 }
 
 export const TweetSchema = SchemaFactory.createForClass(Tweet);

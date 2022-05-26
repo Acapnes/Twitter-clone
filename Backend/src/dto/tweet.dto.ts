@@ -1,32 +1,21 @@
 import { IsBoolean, IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { UserDto } from "./user.dto";
 
 export class TweetDto {
-    @IsString()
+    
     @IsNotEmpty()
-    author: string;
-
-    @IsString()
-    @IsNotEmpty()
-    username: string;
-
-    @IsString()
-    @IsNotEmpty()
-    time: string;
-
-    @IsBoolean()
-    @IsNotEmpty()
-    confrimed: boolean;
+    author: UserDto
 
     @IsNotEmpty()
     data: {
+        time: string;
         message:string
         likeCount:number
         retweetCount:number
         commentCount:number
+        img:{
+            src:string
+        }
     }
-    
-    @IsNotEmpty()
-    img:{
-        src:string
-    }
+
 }

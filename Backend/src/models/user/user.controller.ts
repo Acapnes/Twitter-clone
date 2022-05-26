@@ -21,4 +21,9 @@ export class UsersController {
     return this.usersService.Login(UserDto.email, UserDto.password);
   }
 
+  @Post('/register')
+  async userRegister(@Body() userDto: UserDto): Promise<User> {
+    return this.usersService.Register(userDto);
+  }
+
 }

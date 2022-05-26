@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
 import { ImgDto } from "src/dto/img.dto";
 import { TweetDto } from "src/dto/tweet.dto";
@@ -14,6 +14,12 @@ export class TweetsController {
   async getTweets(): Promise<Tweet[]> {
     return this.tweetsService.getAll();
   }
+
+  @Get(':userId')
+  async getTweetsByUserId(@Param(':userId') userId: string): Promise<Tweet[]>{
+    return this.tweetsService.getTweetsById(userId);
+  }
+
 
   @Post('/create')
   async createTweet(@Body() tweetDto: TweetDto): Promise<Tweet> {

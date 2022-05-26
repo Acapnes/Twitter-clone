@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose, { Document } from 'mongoose';
+import { Tweet } from './tweet.schema';
 
 export type UserDocument = User & Document;
 
@@ -13,7 +14,22 @@ export class User {
   email: string;
 
   @Prop({ required: true })
+  username: string;
+
+  @Prop({ required: true })
+  avatar: string;
+
+  @Prop({ required: true })
+  confrimed: boolean;
+
+  @Prop({ required: true })
+  bio: string;
+
+  @Prop({ required: true })
   password: string;
+
+  @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "Tweet" })
+  tweets: Tweet
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
