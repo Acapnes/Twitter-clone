@@ -15,7 +15,7 @@ export class TweetsService {
   constructor(@InjectModel(Tweet.name) private tweetModel: Model<TweetDocument>) {}
 
   async getAll(): Promise<Tweet[]> {
-    return this.tweetModel.find({});
+    return this.tweetModel.find({}).populate("author");
   }
 
   async createTweet(tweetDto: TweetDto): Promise<Tweet> {
