@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { AuthAPI } from "../api/auth.api";
 
-function Login() {
+function Auth() {
   const handleLogin = () => {
     const resp = AuthAPI.Login({
       email: "Alper2@gmail.com",
@@ -9,7 +10,6 @@ function Login() {
     });
 
     console.log(resp);
-    
   };
 
   return (
@@ -31,11 +31,19 @@ function Login() {
             <p className="text-4xl mb-5 font-bold">Twitter'a bugün katıl.</p>
             <div className="w-[20rem]  flex flex-col">
               <button className="bg-white text-black rounded-full py-2 mb-4 mt-5 flex flex-row items-center justify-center">
-                <img src="assets/google_logo.png" alt="" className="w-6 h-6 mr-2"/>
+                <img
+                  src="assets/google_logo.png"
+                  alt=""
+                  className="w-6 h-6 mr-2"
+                />
                 <span>Google ile Kaydolun</span>
               </button>
               <button className="bg-white text-black rounded-full py-2 mb-2 flex flex-row items-center justify-center">
-                <img src="assets/apple_logo.png" alt="" className="w-6 h-6 mr-2"/>
+                <img
+                  src="assets/apple_logo.png"
+                  alt=""
+                  className="w-6 h-6 mr-2"
+                />
                 <span>Apple ile kaydol</span>
               </button>
               <div className="relative flex py-2 ite mb-2 ms-center">
@@ -62,21 +70,20 @@ function Login() {
               </div>
               <div className="mt-20 flex flex-col">
                 <span className="font-bold">Zaten bir hesabın var mı?</span>
-                <button
-                  onClick={handleLogin}
-                  className="border-2 font-bold rounded-full py-2 mt-5"
-                >
-                  Giriş yap.
-                </button>
+                <Link to="/login" className="border-2 font-bold rounded-full py-2 mt-5 text">
+                  <button
+                    onClick={handleLogin}>
+                    Giriş yap.
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div className="w-full h-fill bg-slate-800 flex justify-center items-center">
-      </div>
+      <div className="w-full h-fill bg-slate-800 flex justify-center items-center"></div>
     </div>
   );
 }
 
-export default Login;
+export default Auth;
