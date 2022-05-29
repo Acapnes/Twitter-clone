@@ -1,9 +1,21 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { TwitterIcon } from "../../components/Icons/SVGIcons";
 
 const Login = () => {
   const [userValue, setuserValue] = useState("");
+
+  // const location = useLocation();
+  // let returnedUserValue;
+
+  // useEffect(() => {
+  //   const _state = location.state as any;
+  //   if (_state.userValue) {
+  //     returnedUserValue = _state.userValue;
+  //   } else {
+  //     returnedUserValue = "Phone, Email or username"
+  //   }
+  // }, []);
 
   return (
     <div className="h-screen w-screen bg-gray-800 flex justify-center items-center">

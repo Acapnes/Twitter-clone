@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { TwitterIcon } from "../../components/Icons/SVGIcons";
 
 const LastLogin = () => {
+  
   const location = useLocation();
   const _state = location.state as any;
   const userValue = _state.userValue;
@@ -32,13 +33,20 @@ const LastLogin = () => {
           </div>
         </div>
         <Link
-          to="/LastLogin"
+          to="/lastLogin"
           className="w-[70%] bg-white bg-opacity-70 text-black font-bold rounded-full py-2 mt-8 text-center"
         >
           <button>Log in</button>
         </Link>
-        <button className="absolute top-0 left-3 rounded-full hover:bg-gray-700 hover:bg-opacity-30 py-2 px-4 font-bold">
-          X
+
+        <Link
+          to="/login" state={{ userValue }}
+          className="absolute top-0 left-3 rounded-full hover:bg-gray-700 hover:bg-opacity-30 py-2 px-4 font-bold"
+        >
+          <button>Back</button>
+        </Link>
+        <button >
+          Back
         </button>
       </div>
     </div>
