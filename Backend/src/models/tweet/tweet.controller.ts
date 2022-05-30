@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Param, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { ImgDto } from "src/dto/img.dto";
-import { TweetDto } from "src/dto/tweet.dto";
+import { ImgDto } from "src/dto/other/img.dto";
+import { TweetDto } from "src/dto/tweets/tweet.dto";
 import { Tweet } from "src/schemas/tweet.schema";
 import { TweetsService } from "./tweet.service";
 

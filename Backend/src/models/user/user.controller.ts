@@ -1,9 +1,10 @@
 import { Body, Controller, ForbiddenException, Get, Param, Post, Res, UseFilters } from "@nestjs/common";
 import { User } from "src/schemas/user.schema";
 import { UsersService } from "./user.service";
-import { UserDto } from "src/dto/user.dto";
+import { UserDto } from "src/dto/users/user.dto";
 import { Response } from 'express';
 import { HttpExceptionFilter } from "src/helpers/http.exception";
+import { UserLoginDto } from "src/dto/users/user.login.dto";
 
 
 
@@ -17,8 +18,9 @@ export class UsersController {
   }
 
   @Post('/login')
-  async userLogin(@Body() UserDto: UserDto) {
-    return this.usersService.Login(UserDto.email, UserDto.password);
+  async userLogin(@Body() UserLoginDto: UserLoginDto) {
+    return UserLoginDto.email ? this.usersService.Login(UserLoginDto.email, null, UserLoginDto.password)
+     : this.usersService.Login(null, UserLoginDto.username, UserLoginDto.password);
   }
 
   @Post('/register')

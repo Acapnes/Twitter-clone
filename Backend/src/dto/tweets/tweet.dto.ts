@@ -1,5 +1,5 @@
 import { IsBoolean, IsEmail, IsNotEmpty, IsString } from "class-validator";
-import { UserDto } from "./user.dto";
+import { UserDto } from "../users/user.dto";
 
 export class TweetDto {
     

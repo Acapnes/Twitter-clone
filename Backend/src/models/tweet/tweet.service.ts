@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model } from "mongoose";
-import { TweetDto } from "src/dto/tweet.dto";
+import { TweetDto } from "src/dto/tweets/tweet.dto";
 import { Tweet, TweetDocument } from "src/schemas/tweet.schema";
 
 
