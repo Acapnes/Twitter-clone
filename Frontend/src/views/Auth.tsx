@@ -1,17 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { AuthAPI } from "../api/auth.api";
 
 function Auth() {
-  const handleLogin = () => {
-    const resp = AuthAPI.Login({
-      email: "Alper2@gmail.com",
-      password: "12345672",
-    });
-
-    console.log(resp);
-  };
-
   return (
     <div className="w-screen h-screen">
       <div className="w-screen h-little bg-black flex flex-row justify-between">
@@ -70,11 +60,11 @@ function Auth() {
               </div>
               <div className="mt-20 flex flex-col">
                 <span className="font-bold">Zaten bir hesabın var mı?</span>
-                <Link to="/login" className="border-2 font-bold rounded-full py-2 mt-5 text">
-                  <button
-                    onClick={handleLogin}>
-                    Giriş yap.
-                  </button>
+                <Link
+                  to="/login"
+                  className="border-2 font-bold rounded-full py-2 mt-5 text-center"
+                >
+                  <button>Giriş yap.</button>
                 </Link>
               </div>
             </div>

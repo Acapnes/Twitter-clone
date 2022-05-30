@@ -19,7 +19,7 @@ const Login = () => {
 
   return (
     <div className="h-screen w-screen bg-gray-800 flex justify-center items-center">
-      <div className="relative h-[70%] w-[32%] bg-black flex items-center flex-col text-white py-4 space-y-4">
+      <div className="relative h-[70%] w-[32%] bg-black flex items-center flex-col text-white py-4 space-y-4 rounded-xl">
         <TwitterIcon />
         <div className="text-4xl font-bold pb-5">Sign With Twitter</div>
         <div className="w-[45%] flex flex-col space-y-4">
