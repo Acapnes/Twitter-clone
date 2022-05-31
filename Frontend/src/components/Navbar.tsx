@@ -141,7 +141,7 @@ const Navbar = () => {
               <img src={userInfo.avatar} alt="" className="rounded-full" />
             </div>
 
-            <div className="flex flex-col pl-2 text-white">
+            <div className="flex flex-col pl-2 items-start text-white">
               <div>{userInfo.username}</div>
               <div className="text-gray-500">{userInfo.email}</div>
             </div>
