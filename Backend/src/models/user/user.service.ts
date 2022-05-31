@@ -12,6 +12,10 @@ export class UsersService {
     return this.userModel.find({});
   }
 
+  async getUserById(_id: string): Promise<User> {
+    return this.userModel.findById({ _id });
+  }
+
   async Login(email: string, username: string, password: string): Promise<User> {
     return this.userModel.findOne(email ? { email, password } : { username, password });
   }

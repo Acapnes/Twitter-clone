@@ -17,10 +17,16 @@ export class UsersController {
     return this.usersService.getAll();
   }
 
+  @Get(':_id')
+  async getUserById(@Param('_id') _id: string): Promise<User> {
+    return this.usersService.getUserById(_id);
+  }
+
+
   @Post('/login')
   async userLogin(@Body() UserLoginDto: UserLoginDto) {
     return UserLoginDto.email ? this.usersService.Login(UserLoginDto.email, null, UserLoginDto.password)
-     : this.usersService.Login(null, UserLoginDto.username, UserLoginDto.password);
+      : this.usersService.Login(null, UserLoginDto.username, UserLoginDto.password);
   }
 
   @Post('/register')

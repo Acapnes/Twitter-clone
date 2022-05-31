@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   HomeIcon,
@@ -13,12 +13,32 @@ import {
 } from "./Icons/SVGIcons";
 
 const Navbar = () => {
+  const [userInfo, setUserInfo] = useState(Object);
+
+  const userMenu = () => {};
+
+  const getUserDetails = async () => {
+    const _id = window.sessionStorage.getItem("pathId");
+    await fetch(`http://localhost:3000/users/${_id}`, {
+      method: "GET",
+      headers: { "Content-type": "application/json" },
+    })
+      .then((resp) => resp.json())
+      .then((userDetails) => setUserInfo(userDetails));
+  };
+
+  useEffect(() => {
+    getUserDetails();
+  }, []);
+
   return (
-    <div className="h-full w-[16.5rem] sticky top-0">
-      <div className="flex flex-col mt-2 space-y-1">
+    <div className="h-screen w-[16.5rem] flex flex-col sticky top-0">
+      <div className="flex flex-col mt-2 space-y-1 mb-10">
         <div className="w-full">
           <Link
-            to="/home" className="w-fit flex flex-row items-center justify-start  space-x-4 px-4 py-4 rounded-full text-white text-2xl hover:bg-gray-900">
+            to="/home"
+            className="w-fit flex flex-row items-center justify-start  space-x-4 px-4 py-4 rounded-full text-white text-2xl hover:bg-gray-900"
+          >
             <TwitterIcon />
           </Link>
         </div>
@@ -112,6 +132,24 @@ const Navbar = () => {
           </div>
         </a>
       </div>
+
+      {/* User Details */}
+      <button onClick={userMenu}>
+        <div className="absolute bottom-5 w-full ">
+          <div className="px-3 rounded-full w-fit py-2 flex flex-row space-x-2 hover:bg-gray-700 hover:bg-opacity-30">
+            <div className="w-12 h-12">
+              <img src={userInfo.avatar} alt="" className="rounded-full" />
+            </div>
+
+            <div className="flex flex-col pl-2 text-white">
+              <div>{userInfo.username}</div>
+              <div className="text-gray-500">{userInfo.email}</div>
+            </div>
+
+            <div className="text-white pl-2 text-2xl ">...</div>
+          </div>
+        </div>
+      </button>
     </div>
   );
 };
