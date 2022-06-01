@@ -14,7 +14,7 @@ export class TrendsService {
 
     async createTrend(): Promise<Trend> {
         return this.trendModel.create({
-            name: "Alper"
+            name: "#Turkey"
         });
     }
 }

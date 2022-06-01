@@ -16,7 +16,7 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="*" element={<App />} />
+        <Route path="*" element={window.sessionStorage.getItem("pathId") ? <App /> : <Auth /> } />
         <Route path="/auth" element={<Auth />} />
         <Route path="/login" element={<Login />} />
         <Route path="/lastLogin" element={<LastLogin />} />
