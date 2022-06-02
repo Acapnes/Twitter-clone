@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { TrendDto } from "../dto/trends/trend.dto";
 import { ShortMoreIconWithoutCircle } from "./Icons/ShortIcons";
 import { TopTweetsIcon } from "./Icons/SVGIcons";
 
 export const Widgets = () => {
-  const [trends, setTrends] = useState([Object]);
+  const [trends, setTrends] = useState<TrendDto[]>([]);
 
   const fetchTrends = async () => {
     await fetch("http://localhost:3000/trend", {
@@ -11,7 +12,10 @@ export const Widgets = () => {
       headers: { "Content-type": "application/json" },
     })
       .then((resp) => resp.json())
-      .then((trends) => setTrends(trends))
+      .then((trends) => {
+        setTrends(trends);
+        console.log(trends);
+      })
       .catch((err) => console.error(err));
   };
 
@@ -59,7 +63,7 @@ export const Widgets = () => {
                     {trend.name.includes("#") ? "" : "#"}
                     {trend.name}
                   </span>
-                  <span className=" text-sm text-gray-500">Tweet Count</span>
+                  <span className=" text-sm text-gray-500">{trend.count}</span>
                 </div>
               </div>
             </button>
