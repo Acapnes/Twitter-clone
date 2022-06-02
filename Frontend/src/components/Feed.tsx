@@ -26,7 +26,7 @@ export const Feed = () => {
   }, []);
 
   return (
-    <div className="h-[100%] w-[37.5rem] border-l-2 border-r-2 border-b-2 border-gray-400 text-white">
+    <div className="h-[100%] w-[37.5rem] border-l-2 border-r-2 border-gray-400 text-white">
       {/* HomeBanner */}
       <div className="w-full h-[6rem] font-bold text-xl relative">
         <Link to="/home" className="absolute top-5 left-5">
@@ -49,7 +49,7 @@ export const Feed = () => {
             className="w-full h-[auto] mt-4 pt-2 flex flex-row border-t-2 border-t-gray-500 relative"
           >
             <div className="w-[15%] h-[100%] ">
-              <div className="text-center">Resim</div>
+              <img src={tweet.author.avatar} alt="Avatar" className=" p-2 rounded-full" />
             </div>
             <div className="w-full h-full flex flex-col pr-12">
               <div className="w-full h-[90%] ">
