@@ -1,4 +1,5 @@
-import { Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Patch, Post } from "@nestjs/common";
+import { TrendDto } from "src/dto/trend/trend.dto";
 import { Trend } from "src/schemas/trend.schema";
 import { TrendsService } from "./trend.service";
 
@@ -13,7 +14,7 @@ export class TrendsController {
     }
 
     @Post('/create')
-    async createTrend(): Promise<Trend>{
-        return this.trendsService.createTrend();
+    async createTrend(@Body()trendDto: TrendDto): Promise<Trend>{
+        return this.trendsService.createTrend(trendDto);
     }
 }
