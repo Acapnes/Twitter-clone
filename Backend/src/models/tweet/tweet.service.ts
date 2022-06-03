@@ -12,7 +12,7 @@ export class TweetsService {
     throw new Error("Method not implemented.");
   }
 
-  constructor(@InjectModel(Tweet.name) private tweetModel: Model<TweetDocument>) {}
+  constructor(@InjectModel(Tweet.name) private tweetModel: Model<TweetDocument>) { }
 
   async getAll(): Promise<Tweet[]> {
     return this.tweetModel.find({}).populate("author");
@@ -25,5 +25,9 @@ export class TweetsService {
   async getTweetsById(userId: string): Promise<Tweet[]> {
     const tweet = this.tweetModel.find({ userId });
     return tweet;
+  }
+
+  async Interactions(tweetDto: TweetDto): Promise<Tweet> {
+    return this.tweetModel.findByIdAndUpdate(tweetDto._id, tweetDto);
   }
 }

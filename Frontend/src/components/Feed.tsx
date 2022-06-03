@@ -10,7 +10,7 @@ import {
   ReTweetIcon,
   ShareIcon,
   ShortMoreIcon,
-  ConfrimedIcon
+  ConfrimedIcon,
 } from "./Icons/ShortIcons";
 
 export const Feed = () => {
@@ -49,7 +49,11 @@ export const Feed = () => {
             className="w-full h-[auto] mt-4 pt-2 flex flex-row border-t-2 border-t-gray-500 relative"
           >
             <div className="w-[15%] h-[100%] ">
-              <img src={tweet.author.avatar} alt="Avatar" className=" p-2 rounded-full" />
+              <img
+                src={tweet.author.avatar}
+                alt="Avatar"
+                className=" p-2 rounded-full"
+              />
             </div>
             <div className="w-full h-full flex flex-col pr-12">
               <div className="w-full h-[90%] ">
@@ -57,11 +61,9 @@ export const Feed = () => {
                   <div className="flex flex-row w-[90%] h-auto space-x-2 ">
                     <span>{tweet.author.name}</span>{" "}
                     <span className=" text-sm text-gray-500">
-                    {tweet.author.confrimed ? <ConfrimedIcon/> : <div></div>}
+                      {tweet.author.confrimed ? <ConfrimedIcon /> : <div></div>}
                     </span>
-                    <span>
-                      {tweet.author.username}
-                    </span>
+                    <span>{tweet.author.username}</span>
                     <span className=" text-sm text-gray-500">
                       {tweet.data.time + "m"}
                     </span>
@@ -107,17 +109,41 @@ export const Feed = () => {
                     </div>
                   </Link>
 
-                  <Link to="*">
-                    <div className="flex flex-row space-x-3 w-[4rem] justify-center">
-                      <div className="p-2 hover:bg-opacity-20 hover:bg-red-600 hover:fill-red-600 fill-gray-500 rounded-full">
-                        {" "}
-                        <LikeIcon />{" "}
-                      </div>{" "}
-                      <div className="mt-1.5 text-gray-500">
-                        {tweet.data.commentCount}
-                      </div>
+                  <button
+                    onClick={async (event) => {
+                      event.preventDefault();
+                      await fetch("http://localhost:3000/tweet/interactions", {
+                        method: "POST",
+                        headers: { "Content-type": "application/json" },
+                        body: JSON.stringify({
+                          _id: tweet._id,
+                          author: tweet.author,
+                          data: {
+                            time: tweet.data.time,
+                            message: tweet.data.message,
+                            likeCount: tweet.data.likeCount! + 1,
+                            retweetCount: tweet.data.retweetCount,
+                            commentCount: tweet.data.commentCount,
+                            img: {
+                              src: tweet.data.img.src,
+                            },
+                          },
+                        }),
+                      })
+                        .then((resp) => resp.json())
+                        .then((data) => console.log(data));
+                    }}
+                    className="flex flex-row space-x-3 w-[4rem] justify-center"
+                    type="submit"
+                  >
+                    <div className="p-2 hover:bg-opacity-20 hover:bg-red-600 hover:fill-red-600 fill-gray-500 rounded-full">
+                      {" "}
+                      <LikeIcon />{" "}
+                    </div>{" "}
+                    <div className="mt-1.5 text-gray-500">
+                      {tweet.data.likeCount}
                     </div>
-                  </Link>
+                  </button>
 
                   <Link to="*">
                     <div className="p-2 hover:bg-opacity-20 hover:bg-blue-600 hover:fill-blue-600 fill-gray-500 rounded-full">

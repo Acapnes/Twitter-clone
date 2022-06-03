@@ -16,7 +16,7 @@ export class TweetsController {
   }
 
   @Get(':userId')
-  async getTweetsByUserId(@Param(':userId') userId: string): Promise<Tweet[]>{
+  async getTweetsByUserId(@Param(':userId') userId: string): Promise<Tweet[]> {
     return this.tweetsService.getTweetsById(userId);
   }
 
@@ -24,5 +24,10 @@ export class TweetsController {
   @Post('/create')
   async createTweet(@Body() tweetDto: TweetDto): Promise<Tweet> {
     return this.tweetsService.createTweet(tweetDto);
+  }
+
+  @Post('/interactions')
+  async tweetInteractions(@Body() tweetDto: TweetDto): Promise<Tweet> {
+    return this.tweetsService.Interactions(tweetDto);
   }
 }
