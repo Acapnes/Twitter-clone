@@ -8,7 +8,7 @@ export const NewTweet = () => {
 
   const sendTweet = () => {
     TweetAPI.sendTweet({
-      author: "628f7687b4097d4de664f617",
+      author: window.sessionStorage.getItem("pathId")?.toString()!,
       data: {
         time: Date().toLocaleString(),
         message: message,
@@ -16,10 +16,11 @@ export const NewTweet = () => {
         retweetCount: 0,
         commentCount: 0,
         img: {
-          src: imageURL
+          src: "imageURL.jpg"
         },
       },
-    }).then((resp) => console.log(resp));
+    }).then((resp) => console.log(resp._id));
+    window.location.reload();
   };
 
   const [imageURL, setImageURL] = useState<any>();

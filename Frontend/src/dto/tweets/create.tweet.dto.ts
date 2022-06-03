@@ -9,7 +9,7 @@ export interface CreateTweetDto {
         retweetCount:number
         commentCount:number
         img:{
-            src:string
+            src:any
         }
     }
 }
