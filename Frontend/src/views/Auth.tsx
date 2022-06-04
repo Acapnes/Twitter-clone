@@ -41,9 +41,14 @@ function Auth() {
                 <span className="flex-shrink mx-4 text-gray-400">veya</span>
                 <div className="flex-grow border-t mt-3 border-gray-400"></div>
               </div>
-              <button className="bg-blue-500 font-bold rounded-full py-2 mb-2">
+
+              <Link
+                to="/register"
+                className="bg-blue-500 font-bold rounded-full py-2 mb-2 text-center"
+              >
                 Telefon numarası veya e-posta...
-              </button>
+              </Link>
+
               <div className="text-xs  text-gray-500">
                 <span>By signing up, you agree to the </span>
                 <a className=" text-blue-500" href="https://www.google.com/">

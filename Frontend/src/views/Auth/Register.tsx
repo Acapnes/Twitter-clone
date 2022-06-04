@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import RegisterDialog from "../../components/AuthComps/RegisterDialog";
 import { TwitterIcon } from "../../components/Icons/SVGIcons";
 
 const Register = () => {
+
   return (
     <div className="h-screen w-screen bg-gray-800 flex justify-center items-center">
       <div className="relative h-[70%] w-[32%] bg-black flex items-center flex-col text-white rounded-2xl py-4 space-y-4">
@@ -35,9 +37,7 @@ const Register = () => {
               <div className="flex-grow border-t mt-3 border-gray-400"></div>
             </div>
 
-            <button className="bg-white text-black text-sm font-bold rounded-full py-2 mb-2">
-              Telefon numarası veya e-posta ile kaydol
-            </button>
+            <RegisterDialog/>
 
             <div className="text-xs  text-gray-500">
               <span>By signing up, you agree to the </span>
@@ -55,10 +55,11 @@ const Register = () => {
             </div>
 
             <div className="flex flex-row mt-10 text-gray-500 space-x-1">
-                <span>Zaten bir hesabın var mı?</span>
+              <span>Zaten bir hesabın var mı?</span>
+              <button>
                 <span className="text-blue-500">Giriş Yap</span>
+              </button>
             </div>
-
           </div>
         </div>
 
