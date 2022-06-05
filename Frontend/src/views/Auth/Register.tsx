@@ -5,6 +5,21 @@ import { TwitterIcon } from "../../components/Icons/SVGIcons";
 
 const Register = () => {
 
+  var user = {
+    name:"",
+    email:"alper@gmail.com",
+    username:"",
+    avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSj3EnvZqEPMT2q7MkLY0cZ_hABtRm62F8o-A&usqp=CAU",
+    confrimed:false,
+    bio:"",
+    birthDate:"", /// add to backend schema
+    password:"",
+  };
+
+  React.useEffect(() => {
+    window.sessionStorage.setItem("user",JSON.stringify(user));
+  }, []);
+
   return (
     <div className="h-screen w-screen bg-gray-800 flex justify-center items-center">
       <div className="relative h-[70%] w-[32%] bg-black flex items-center flex-col text-white rounded-2xl py-4 space-y-4">
