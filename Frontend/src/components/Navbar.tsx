@@ -24,7 +24,10 @@ const Navbar = () => {
       headers: { "Content-type": "application/json" },
     })
       .then((resp) => resp.json())
-      .then((userDetails) => setUserInfo(userDetails));
+      .then((userDetails) => {
+        setUserInfo(userDetails);
+        window.sessionStorage.setItem("avatar", userDetails.avatar);
+      });
   };
 
   useEffect(() => {

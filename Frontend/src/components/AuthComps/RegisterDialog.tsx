@@ -2,6 +2,7 @@ import * as React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
+import { AuthAPI } from "../../api/auth.api";
 
 const RegisterDialog = () => {
   const [openFirst, setOpen] = React.useState(false);
@@ -40,7 +41,7 @@ const RegisterDialog = () => {
         aria-describedby="alert-dialog-description"
         fullWidth
       >
-        <DialogTitle id="alert-dialog-title">{"Adım 1/5"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{"Twitter'a Kayıt ol"}</DialogTitle>
         <DialogContent>
           <div className="flex flex-col space-y-4">
             <input
@@ -50,28 +51,19 @@ const RegisterDialog = () => {
               onChange={(e) => setName(e.target.value)}
             />
 
-            <div className="flex flex-col">
-              <input
-                type="text"
-                className="px-2 py-5  border-2 border-gray-800 rounded-md outline-none"
-                placeholder="Kullanıcı adı"
-                onChange={(e) => {
-                  choice
-                    ? setUserName(e.target.value)
-                    : setEmail(e.target.value);
-                }}
-              />
-              <button
-                className="flex justify-end"
-                onClick={() => {
-                  setChoice(!choice);
-                  setEmail("");
-                  setUserName("");
-                }}
-              >
-                <span className="text-blue-600 text-sm">E-posta kullan</span>
-              </button>
-            </div>
+            <input
+              type="text"
+              className="px-2 py-5 w-full border-2 border-gray-800 rounded-md outline-none"
+              placeholder="Kullanıcı adı"
+              onChange={(e) => setUserName(e.target.value)}
+            />
+
+            <input
+              type="text"
+              className="px-2 py-5  border-2 border-gray-800 rounded-md outline-none"
+              placeholder="E-posta"
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
             <input
               type="text"
@@ -114,17 +106,20 @@ const RegisterDialog = () => {
         <button
           className="m-4 rounded-full p-4 bg-black text-white font-bold"
           onClick={() => {
-            var user = JSON.parse(window.sessionStorage.getItem("user")!);
             if (name && (username || email) && pw != "") {
-              user.name = name;
-              user.username = username;
-              user.email = email;
-              user.password = pw;
-              user.birthDate = day+"/"+month+"/"+year
+              var user = {
+                name: name,
+                username: username,
+                email: email,
+                avatar: "https://i.pinimg.com/564x/09/aa/8d/09aa8d86147fa14a67fda510d5df2f60.jpg",
+                bio: name+"'s Biography",
+                confrimed: false,
+                birthDate: day + "/" + month + "/" + year,
+                password: pw,
+              };
+              AuthAPI.Register(user);
+              // console.log(user);
             } else alert("Gerekli yerleri doldurunuz.");
-
-            window.sessionStorage.setItem("user", JSON.stringify(user));
-            console.log(JSON.parse(window.sessionStorage.getItem("user")!));
           }}
         >
           İleri

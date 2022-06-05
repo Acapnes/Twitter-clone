@@ -20,6 +20,9 @@ export class User {
   avatar: string;
 
   @Prop({ required: true })
+  birthDate: string;
+
+  @Prop({ required: true })
   confrimed: boolean;
 
   @Prop({ required: true })

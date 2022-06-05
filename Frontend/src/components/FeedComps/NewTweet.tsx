@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { TweetAPI } from "../../api/tweet.api";
-import { ShortGalleryIcon } from "../Icons/ShortIcons";
+import { ShortEmojiIcon, ShortGalleryIcon, ShortGifIcon, ShortLocationIcon, ShortPollIcon, ShortScheduleIcon } from "../Icons/ShortIcons";
 
 export const NewTweet = () => {
   const [message, setMessage] = useState("");
@@ -16,7 +16,7 @@ export const NewTweet = () => {
         retweetCount: 0,
         commentCount: 0,
         img: {
-          src: "imageURL.jpg"
+          src: "https://i.pinimg.com/736x/ce/67/d5/ce67d5259c2c91f10d83a2439ea15006.jpg",
         },
       },
     }).then((resp) => console.log(resp._id));
@@ -41,7 +41,11 @@ export const NewTweet = () => {
     <div className="w-full h-full flex flex-col">
       <div className="flex flex-row w-full h-[7rem]">
         <div className="w-[15%] h-[100%] ">
-          <div className="text-center">Resim</div>
+          {window.sessionStorage.getItem("avatar") != "undefined" ? (
+            <img src={window.sessionStorage.getItem("avatar")!} alt="" className="w-[3.5rem] h-[3.5rem] rounded-full m-2"/>
+          ) : (
+            <div className="text-center">Resim</div>
+          )}
         </div>
         <div className="w-full relative">
           <input
@@ -69,35 +73,35 @@ export const NewTweet = () => {
             <Link to="*">
               <div className="p-2 hover:bg-opacity-20 hover:bg-blue-600 fill-blue-400 rounded-full">
                 {" "}
-                <ShortGalleryIcon />{" "}
+                <ShortGifIcon />{" "}
               </div>
             </Link>
 
             <Link to="*">
               <div className="p-2 hover:bg-opacity-20 hover:bg-blue-600 fill-blue-400 rounded-full">
                 {" "}
-                <ShortGalleryIcon />{" "}
+                <ShortPollIcon />{" "}
               </div>
             </Link>
 
             <Link to="*">
               <div className="p-2 hover:bg-opacity-20 hover:bg-blue-600 fill-blue-400 rounded-full">
                 {" "}
-                <ShortGalleryIcon />{" "}
+                <ShortEmojiIcon />{" "}
               </div>
             </Link>
 
             <Link to="*">
               <div className="p-2 hover:bg-opacity-20 hover:bg-blue-600 fill-blue-400 rounded-full">
                 {" "}
-                <ShortGalleryIcon />{" "}
+                <ShortScheduleIcon />{" "}
               </div>
             </Link>
 
             <Link to="*">
               <div className="p-2 hover:bg-opacity-20 hover:bg-blue-600 fill-blue-400 rounded-full">
                 {" "}
-                <ShortGalleryIcon />{" "}
+                <ShortLocationIcon />{" "}
               </div>
             </Link>
           </div>
@@ -113,7 +117,9 @@ export const NewTweet = () => {
       {imageURL && (
         <div className="w-full mt-4 flex justify-center items-center p-4 ">
           <div className="relative">
-            <button className="absolute top-2 left-1 rounded-full bg-gray-800 hover:bg-gray-400 hover:bg-opacity-25 px-3 py-1">X</button>
+            <button className="absolute top-2 left-1 rounded-full bg-gray-800 hover:bg-gray-400 hover:bg-opacity-25 px-3 py-1">
+              X
+            </button>
             <img src={imageURL} alt="" className="rounded-2xl" />
           </div>
         </div>

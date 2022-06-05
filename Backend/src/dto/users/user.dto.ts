@@ -19,6 +19,10 @@ export class UserDto {
     @IsNotEmpty()
     avatar:string;
 
+    @IsString()
+    @IsNotEmpty()
+    birthDate:string;
+
     @IsBoolean()
     @IsNotEmpty()
     confrimed: boolean;
