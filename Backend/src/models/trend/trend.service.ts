@@ -7,7 +7,7 @@ import { Trend, TrendDocument } from "src/schemas/trend.schema";
 
 @Injectable()
 export class TrendsService {
-    constructor(@InjectModel(Trend.name) private trendModel: Model<TrendDocument>) { }
+    constructor(@InjectModel(Trend.name) private trendModel: Model<TrendDocument>) {}
 
     async getAll(): Promise<Trend[]> {
         return this.trendModel.find({});

@@ -12,10 +12,7 @@ export const Widgets = () => {
       headers: { "Content-type": "application/json" },
     })
       .then((resp) => resp.json())
-      .then((trends) => {
-        setTrends(trends);
-        console.log(trends);
-      })
+      .then((trends) => setTrends(trends))
       .catch((err) => console.error(err));
   };
 
@@ -40,7 +37,7 @@ export const Widgets = () => {
 
         {/* Trends */}
         <div className="h-auto bg-slate-800 rounded-2xl pt-2">
-          <span className="text-2xl font-bold text-white px-4 ">
+          <span className="text-2xl font-bold text-white px-4">
             Trends For You
           </span>
 
@@ -51,26 +48,30 @@ export const Widgets = () => {
             >
               <div className="w-full h-auto flex flex-col px-4 mt-4">
                 <div className=" w-fill  flex flex-row justify-between">
-                  <span className=" text-sm text-gray-500">
+                  <span className=" text-sm text-gray-500 ">
                     Tending in Turkey
                   </span>{" "}
-                  <button className="rounded-full p-2 fill-gray-500 hover:bg-blue-500 hover:bg-opacity-25 hover:fill-blue-400">
+                  <div className="rounded-full p-2 fill-gray-500 hover:bg-blue-500 hover:bg-opacity-25 hover:fill-blue-400">
                     <ShortMoreIconWithoutCircle />
-                  </button>
+                  </div>
                 </div>
                 <div className="w-full flex flex-col items-start">
                   <span className="text-white font-bold">
                     {trend.name.includes("#") ? "" : "#"}
                     {trend.name}
                   </span>
-                  <span className=" text-sm text-gray-500">{trend.count}</span>
+                  <span className=" text-sm text-gray-500">
+                    {trend.count}K Tweets
+                  </span>
                 </div>
               </div>
             </button>
           ))}
 
           {/* Show More Button */}
-          <button className="w-full h-auto text-left hover:bg-gray-500 hover:bg-opacity-10 rounded-b-2xl mt-4 py-4 px-4 text-blue-600">Show more</button>
+          <button className="w-full h-auto text-left hover:bg-gray-500 hover:bg-opacity-10 rounded-b-2xl mt-4 py-4 px-4 text-blue-600">
+            Show more
+          </button>
         </div>
       </div>
     </div>
