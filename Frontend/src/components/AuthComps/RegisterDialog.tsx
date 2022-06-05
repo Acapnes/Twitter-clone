@@ -1,22 +1,27 @@
 import * as React from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
 const RegisterDialog = () => {
-  const [open, setOpen] = React.useState(false);
+  const [openFirst, setOpen] = React.useState(false);
 
+  const [name, setName] = React.useState("");
+  const [username, setUserName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [pw, setPw] = React.useState("");
+
+  const [day, setDay] = React.useState("");
+  const [month, setMonth] = React.useState("");
+  const [year, setYear] = React.useState("");
+
+  const [choice, setChoice] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
-    console.log("blood");
+  const handleCloseFirst = () => {
     setOpen(false);
   };
 
@@ -29,8 +34,8 @@ const RegisterDialog = () => {
         Telefon numarası veya e-posta ile kaydol
       </button>
       <Dialog
-        open={open}
-        onClose={handleClose}
+        open={openFirst}
+        onClose={handleCloseFirst}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
         fullWidth
@@ -42,18 +47,38 @@ const RegisterDialog = () => {
               type="text"
               className="px-2 py-5 w-full border-2 border-gray-800 rounded-md outline-none"
               placeholder="İsim"
+              onChange={(e) => setName(e.target.value)}
             />
 
             <div className="flex flex-col">
               <input
                 type="text"
                 className="px-2 py-5  border-2 border-gray-800 rounded-md outline-none"
-                placeholder="Telefon"
+                placeholder="Kullanıcı adı"
+                onChange={(e) => {
+                  choice
+                    ? setUserName(e.target.value)
+                    : setEmail(e.target.value);
+                }}
               />
-              <a href="#">
-                <span className=" text-blue-600 text-sm">E-posta kullan</span>
-              </a>
+              <button
+                className="flex justify-end"
+                onClick={() => {
+                  setChoice(!choice);
+                  setEmail("");
+                  setUserName("");
+                }}
+              >
+                <span className="text-blue-600 text-sm">E-posta kullan</span>
+              </button>
             </div>
+
+            <input
+              type="text"
+              className="px-2 py-5 w-full border-2 border-gray-800 rounded-md outline-none"
+              placeholder="Şifre"
+              onChange={(e) => setPw(e.target.value)}
+            />
 
             <div className="flex flex-col">
               <span>Doğum Tarihi</span>
@@ -67,22 +92,41 @@ const RegisterDialog = () => {
                   type="text"
                   className="outline-none border-2 border-gray-600 px-2 py-5 w-[14rem]"
                   placeholder="Gün"
+                  onChange={(e) => setDay(e.target.value)}
                 />
                 <input
                   type="text"
                   className="outline-none border-2 border-gray-600 px-2 py-5 w-[8rem]"
                   placeholder="Ay"
+                  onChange={(e) => setMonth(e.target.value)}
                 />
                 <input
                   type="text"
                   className="outline-none border-2 border-gray-600 px-2 py-5 w-[12rem]"
                   placeholder="Yıl"
+                  onChange={(e) => setYear(e.target.value)}
                 />
               </div>
             </div>
           </div>
         </DialogContent>
-        <button className="m-4 rounded-full p-4 bg-black text-white font-bold">
+
+        <button
+          className="m-4 rounded-full p-4 bg-black text-white font-bold"
+          onClick={() => {
+            var user = JSON.parse(window.sessionStorage.getItem("user")!);
+            if (name && (username || email) && pw != "") {
+              user.name = name;
+              user.username = username;
+              user.email = email;
+              user.password = pw;
+              user.birthDate = day+"/"+month+"/"+year
+            } else alert("Gerekli yerleri doldurunuz.");
+
+            window.sessionStorage.setItem("user", JSON.stringify(user));
+            console.log(JSON.parse(window.sessionStorage.getItem("user")!));
+          }}
+        >
           İleri
         </button>
       </Dialog>
